@@ -6,18 +6,8 @@ import edu.princeton.cs.algs4.StdRandom;
 public class testDemo {
     public static void main(String[] args) {
         testDemo test = new testDemo();
-        int n = 50;
-        double[] a = new double[n];
-        for (int i = 0; i < n; i++) {
-            a[i] = StdRandom.random();
-        }
-        for (int i = 0; i < a.length; i++) {
-            double x = 1.0 * i / n;
-            double y = a[i] / 2.0;
-            double rw = 0.5 / n;
-            double rh = a[i] / 2.0;
-            StdDraw.filledRectangle(x, y, rw, rh);
-        }
+        int j = 5;
+        int i = 1;
     }
 
     private void beauty() {
