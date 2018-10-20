@@ -9,8 +9,9 @@ public class Insertion implements SortTemplate {
         Insertion debug = new Insertion();
         Comparable[] a = debug.createIntArray(20, 1000);
         Comparable[] b = debug.createDoubleArray(20, 1.0, 100.0);
-        debug.sort(a);
-        debug.sort(b);
+//        debug.sort(a);
+//        debug.sort(b);
+        debug.sortWithGuard(b);
     }
 
     @Override
@@ -27,5 +28,23 @@ public class Insertion implements SortTemplate {
         }
         show(a);
         draw(a);
+    }
+
+    public void sortWithGuard(Comparable[] a) {
+        int n = a.length;
+        Comparable[] b = new Comparable[n + 1];
+        for (int l = 1; l < b.length; l++) {
+            b[l] = a[l - 1];
+        }
+        n = b.length;
+        int i, j;
+        for (i = 2; i < n; i++) {
+            b[0] = b[i];
+            for (j = i - 1; less(b[0], b[j]); j--) {
+                b[j + 1] = b[j];
+            }
+            b[j + 1] = b[0];
+        }
+        show(b);
     }
 }

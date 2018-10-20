@@ -6,6 +6,7 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 import java.awt.*;
+import java.text.DecimalFormat;
 
 public interface SortTemplate {
     void sort(Comparable[] a);
@@ -22,7 +23,7 @@ public interface SortTemplate {
 
     default void show(Comparable[] a) {
         for (int i = 0; i < a.length; i++) {
-            StdOut.print(a[i] + " ");
+            StdOut.printf("%.2f ", a[i]);
         }
         System.out.println();
     }
@@ -62,7 +63,7 @@ public interface SortTemplate {
                 max = a[i];
             }
         }
-        StdDraw.setXscale(0, 1);
+        StdDraw.setXscale(-1.0 / n, 1);
         if (a[0] instanceof Integer) {
             StdDraw.setYscale(0, (int) max);
         } else if (a[0] instanceof Double) {
@@ -89,7 +90,14 @@ public interface SortTemplate {
     default void drawWithColor(Comparable[] a, Color color, int start, int end) {
         double x, y, rw, rh;
         int n = a.length;
-        StdDraw.setXscale(0, 1);
+        Comparable max = a[0];
+        for (int i = 1; i < n; i++) {
+            if (less(max, a[i])) {
+                max = a[i];
+            }
+        }
+        StdDraw.setXscale(-1.0 / n, 1);
+        StdDraw.setYscale(0, (double) max);
         StdDraw.setPenColor(color);
         for (int i = start; i < end + 1; i++) {
             y = (double) a[i] / 2.0;
